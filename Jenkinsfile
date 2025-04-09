@@ -2,8 +2,8 @@ pipeline {
 	environment {
 		IMAGE_NAME = "alpinehelloworld2"
 		IMAGE_TAG = "latest"
-		STAGING = "test-staging"
-		PRODUCTION = "sstfort-production"
+		STAGING = "alpinehelloworld2-staging"
+		PRODUCTION = "alpinehelloworld2-production"
 	}
 	agent none
 	stages{
@@ -20,7 +20,8 @@ pipeline {
 			steps {
 				script {
 					sh '''
-     						docker rm -f $IMAGE_NAME || true
+     						docker stop $IMAGE_NAME || true
+                    				docker rm $IMAGE_NAME || true
 						docker run --name $IMAGE_NAME -d -p 40:6500 -e PORT=6500 sstfort/$IMAGE_NAME:$IMAGE_TAG
 						sleep 5
 					'''
@@ -31,7 +32,7 @@ pipeline {
 			agent any
 			steps {
 				script {
-					sh 'curl http://172.17.0.1 | grep -q "Please use the"'
+					sh 'curl http://172.17.0.1:40 | grep -q "Please use the"'
 				}
 			}
 		}
@@ -40,8 +41,8 @@ pipeline {
 			steps {
 				script {
 					sh '''
-						docker stop $IMAGE_NAME
-						docker rm $IMAGE_NAME
+						docker stop $IMAGE_NAME || true
+                    				docker rm $IMAGE_NAME || true
 					'''
 				}
 			}
