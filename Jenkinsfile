@@ -49,7 +49,7 @@ pipeline {
 		}
 		stage('Push image in staging and deploy') {
 			when{
-				branch 'main'
+				expression { GIT_BRANCH == 'origin/master'}
 			}
 			agent any
 			environment {
