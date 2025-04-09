@@ -20,7 +20,7 @@ pipeline {
 			steps {
 				script {
 					sh '''
-						docker run --name $IMAGE_NAME -d -p 30:5000 -e PORT=5000 sstfort/$IMAGE_NAME:$IMAGE_TAG
+						docker run --name $IMAGE_NAME -d -p 30:6000 -e PORT=6000 sstfort/$IMAGE_NAME:$IMAGE_TAG
 						sleep 5
 					'''
 				}
