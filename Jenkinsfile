@@ -32,7 +32,7 @@ pipeline {
 			agent any
 			steps {
 				script {
-					sh 'curl http://172.17.0.1:40 | grep -q "Please use the"'
+					sh 'curl http://172.17.0.1 | grep -q "Please use the"'
 				}
 			}
 		}
