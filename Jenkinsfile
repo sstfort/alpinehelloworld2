@@ -58,8 +58,16 @@ pipeline {
 			steps {
 				script {
 					sh '''
+						echo "Deploying to STAGING"
 						heroku container:login
-						heroku create $STAGING || echo "Project already exists"
+
+						# Create the app if not exists
+						heroku apps:info -a $STAGING || heroku create $STAGING
+
+						# Set the stack to container for Docker deployment
+						heroku stack:set container -a $STAGING
+
+						# Push and release
 						heroku container:push -a $STAGING web
 						heroku container:release -a $STAGING web
 					'''
@@ -77,8 +85,16 @@ pipeline {
 			steps {
 				script {
 					sh '''
+						echo "Deploying to PRODUCTION"
 						heroku container:login
-						heroku create $PRODUCTION || echo "Project already exists"
+
+						# Create the app if not exists
+						heroku apps:info -a $PRODUCTION || heroku create $PRODUCTION
+
+						# Set the stack to container for Docker deployment
+						heroku stack:set container -a $PRODUCTION
+
+						# Push and release
 						heroku container:push -a $PRODUCTION web
 						heroku container:release -a $PRODUCTION web
 					'''
