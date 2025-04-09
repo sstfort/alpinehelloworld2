@@ -1,6 +1,6 @@
 pipeline {
 	environment {
-		IMAGE_NAME = "alpinehelloworld5"
+		IMAGE_NAME = "alpinehelloworld2"
 		IMAGE_TAG = "latest"
 		STAGING = "test-staging"
 		PRODUCTION = "sstfort-production"
@@ -20,6 +20,7 @@ pipeline {
 			steps {
 				script {
 					sh '''
+     						docker rm -f $IMAGE_NAME || true
 						docker run --name $IMAGE_NAME -d -p 40:6500 -e PORT=6500 sstfort/$IMAGE_NAME:$IMAGE_TAG
 						sleep 5
 					'''
