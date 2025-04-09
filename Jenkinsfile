@@ -1,6 +1,6 @@
 pipeline {
 	environment {
-		IMAGE_NAME = "alpinehelloworld2"
+		IMAGE_NAME = "alpinehelloworld3"
 		IMAGE_TAG = "latest"
 		STAGING = "test-stagin"
 		PRODUCTION = "sstfort-production"
@@ -30,7 +30,7 @@ pipeline {
 			agent any
 			steps {
 				script {
-					sh 'curl http://172.17.0.1 grep -q "Hello world!"'
+					sh 'curl http:// 172.17.0.1 grep -q "Hello world!"'
 				}
 			}
 		}
