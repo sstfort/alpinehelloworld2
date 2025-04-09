@@ -1,6 +1,6 @@
 pipeline {
 	environment {
-		IMAGE_NAME = "alpinehelloworld3"
+		IMAGE_NAME = "alpinehelloworld5"
 		IMAGE_TAG = "latest"
 		STAGING = "test-staging"
 		PRODUCTION = "sstfort-production"
