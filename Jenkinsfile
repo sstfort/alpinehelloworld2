@@ -1,5 +1,5 @@
 /* import shared library */
-@Library('sstfort-shared-library')
+@Library('sstfort-shared-library')_
 pipeline {
 	environment {
 		IMAGE_NAME = "alpinehelloworld2"
