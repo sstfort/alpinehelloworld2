@@ -1,3 +1,5 @@
+/* import shared library */
+@Library('sstfort-shared-library')_
 pipeline {
 	environment {
 		IMAGE_NAME = "alpinehelloworld2"
@@ -102,4 +104,11 @@ pipeline {
 			}
 		}
 	}
+    post {
+       always {
+            script {
+                slackNotifier currentBuild.result
+            }
+       }
+    }
 }
